@@ -29,14 +29,14 @@ public class Server {
         System.out.println("Port 12345 is now open.");
 
         while (true) {
-            // accepts a new client
+
             Socket client = server.accept();
             System.out.println("Connection established with client: " + client.getInetAddress().getHostAddress());
 
-            // add client message to list
+
             this.clients.add(new PrintStream(client.getOutputStream()));
 
-            // create a new thread for client handling
+
             new Thread(new ClientHandler(this, client.getInputStream())).start();
         }
     }
